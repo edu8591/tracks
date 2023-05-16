@@ -1,30 +1,27 @@
 import React, { useContext } from "react";
-import { Text } from "react-native-elements";
-import { StyleSheet, TouchableOpacity, SafeAreaView } from "react-native";
-import Spacer from "../components/Spacer";
+import { StyleSheet, SafeAreaView } from "react-native";
 import { Context as AuthContext } from "../context/AuthContext";
-
+import { NavigationEvents } from "react-navigation";
+import NavLink from "../components/NavLink";
 import AuthForm from "../components/AuthForm";
 
-const SigninScreen = ({ navigation }) => {
-  const { state, signin } = useContext(AuthContext);
-  console.log(state);
+const SigninScreen = () => {
+  const { state, signin, clearErrorMessage } = useContext(AuthContext);
+
   return (
     <SafeAreaView style={styles.container}>
+      <NavigationEvents onWillFocus={clearErrorMessage} />
+
       <AuthForm
         headerText="Log in to Tracker"
         errorMessage={state.errorMessage}
         onSubmit={signin}
         submitButtonText="Login"
       />
-
-      <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-        <Spacer>
-          <Text style={styles.link}>
-            Don't have an account? Sign up instead
-          </Text>
-        </Spacer>
-      </TouchableOpacity>
+      <NavLink
+        routeName="Signup"
+        title="Don't have an account? Sign up instead"
+      />
     </SafeAreaView>
   );
 };
@@ -40,9 +37,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     marginBottom: 250,
-  },
-  link: {
-    color: "blue",
   },
 });
 export default SigninScreen;

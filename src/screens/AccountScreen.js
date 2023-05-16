@@ -1,8 +1,12 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { SafeAreaView, Text, StyleSheet } from "react-native";
 
 const AccountScreen = () => {
-  return <Text style={{ fontSize: 48 }}>AccountScreen</Text>;
+  return (
+    <SafeAreaView>
+      <Text style={{ fontSize: 48 }}>AccountScreen</Text>
+    </SafeAreaView>
+  );
 };
 
 const styles = StyleSheet.create({});

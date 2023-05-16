@@ -7,10 +7,10 @@ const authReducer = (state, action) => {
   switch (action.type) {
     case "login":
       return { token: action.payload, errorMessage: "" };
-    case "signup":
-      return { token: action.payload, errorMessage: "" };
     case "add_error":
       return { ...state, errorMessage: action.payload };
+    case "clear_error":
+      return { ...state, errorMessage: "" };
     default:
       return state;
   }
@@ -29,16 +29,24 @@ const signup = (dispatch) => {
       //if signed up  modify state and stay authenticated
 
       dispatch({
-        type: "signup",
+        type: "login",
         payload: response.data.token,
       });
     } catch (err) {
       // if signup fails reflect an error msg somewhere
       dispatch({
         type: "add_error",
-        payload: "Something whent wrong with signup",
+        payload: "Something went wrong with signup",
       });
     }
+  };
+};
+
+const clearErrorMessage = (dispatch) => {
+  return () => {
+    dispatch({
+      type: "clear_error",
+    });
   };
 };
 
@@ -59,7 +67,7 @@ const signin = (dispatch) => {
     } catch (err) {
       dispatch({
         type: "add_error",
-        payload: "Something whent wrong with login",
+        payload: "Something went wrong with login",
       });
     }
     // Try to sign in
@@ -76,6 +84,6 @@ const signout = (dispatch) => {
 
 export const { Provider, Context } = createDataContext(
   authReducer,
-  { signup, signin, signout },
+  { signup, signin, signout, clearErrorMessage },
   { token: null, errorMessage: "" }
 );

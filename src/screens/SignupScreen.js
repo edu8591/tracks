@@ -1,28 +1,28 @@
-import React, { useContext } from "react";
-import { Text } from "react-native-elements";
-import { StyleSheet, TouchableOpacity, SafeAreaView } from "react-native";
-import Spacer from "../components/Spacer";
+import React, { useContext, useEffect } from "react";
+import { StyleSheet, SafeAreaView } from "react-native";
 import { Context as AuthContext } from "../context/AuthContext";
+import { NavigationEvents } from "react-navigation";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import AuthForm from "../components/AuthForm";
+import NavLink from "../components/NavLink";
 
 const SignupScreen = ({ navigation }) => {
-  const { state, signup } = useContext(AuthContext);
+  const { state, signup, clearErrorMessage } = useContext(AuthContext);
 
   return (
     <SafeAreaView style={styles.container}>
+      <NavigationEvents onWillFocus={clearErrorMessage} />
+
       <AuthForm
         headerText="Sign up for Tracker"
         errorMessage={state.errorMessage}
         onSubmit={signup}
         submitButtonText="Signup"
       />
-      <TouchableOpacity onPress={() => navigation.navigate("Signin")}>
-        <Spacer>
-          <Text style={styles.link}>
-            Already have an account? Sign in instead
-          </Text>
-        </Spacer>
-      </TouchableOpacity>
+      <NavLink
+        routeName="Signin"
+        title="Already have an account? Sign in instead"
+      />
     </SafeAreaView>
   );
 };
