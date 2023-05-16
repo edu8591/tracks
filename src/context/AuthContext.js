@@ -85,9 +85,6 @@ const signin = (dispatch) => {
         payload: "Something went wrong with login",
       });
     }
-    // Try to sign in
-    //handle success by updating state
-    // handle error by showing user an error msg
   };
 };
 
@@ -98,7 +95,6 @@ const signout = (dispatch) => {
       type: "Signout",
     });
     navigate("LoginFlow");
-    // sign out
   };
 };
 
