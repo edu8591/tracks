@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from "react";
-import { StyleSheet, SafeAreaView } from "react-native";
+import React, { useContext } from "react";
+import { StyleSheet } from "react-native";
+import { SafeAreaView } from "react-navigation";
 import { Context as AuthContext } from "../context/AuthContext";
 import { NavigationEvents } from "react-navigation";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import AuthForm from "../components/AuthForm";
 import NavLink from "../components/NavLink";
 

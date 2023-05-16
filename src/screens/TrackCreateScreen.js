@@ -1,14 +1,18 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { SafeAreaView } from "@react-navigation/native";
+import { Text, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-navigation";
 
 const TrackCreateScreen = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <Text style={{ fontSize: 48 }}>TrackCreateScreen</Text>
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 export default TrackCreateScreen;
